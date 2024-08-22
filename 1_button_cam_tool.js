@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     1-Click CAM Tool
-// @version  1.0
+// @version  1.1
 // @grant    none
 // @match    *://itsm.services.sap/*
 // @include  *://itsm.services.sap/*
@@ -281,20 +281,19 @@ var caseData;
 
 document.addEventListener("mousedown",(e)=>{
   if(e.target.id == "camButton"){
-    console.log(caseData);
-    ise.tab.add("https://spc.ondemand.com/sap/bc/webdynpro/a1sspc/cam_sup_central?TENANT_ID="+caseData.headers.data.systemNumber+"&access_level=SAP_SUPPORT_L6&TYPE=SN&POINTER="+caseData.id+"#", { show: true } )
+    ise.tab.add("https://spc.ondemand.com/sap/bc/webdynpro/a1sspc/cam_sup_central?TENANT_ID="+caseData.headers.data.systemNumber+"&access_level=SAP_SUPPORT_L6&TYPE=SN&POINTER="+caseData.id+"#", { show: true } );
+    ise.tab.add(caseData.headers.data.installBase.url, { show: false } );
+
   }
 });
 
 //Setting content when case is opened
 ise.case.onUpdate2(
     async (receivedCaseData) => {
-      console.log(receivedCaseData);
       if(receivedCaseData.types[0] == "nocase"){
         document.body.removeChild(document.getElementById("camButton"));
       }else if (receivedCaseData.types[0] == "headers"){
         caseData = receivedCaseData;
-        console.log(caseData);
         document.body.appendChild(camButton);
       }      
   },
