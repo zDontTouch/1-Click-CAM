@@ -5,6 +5,7 @@
 // @match    *://itsm.services.sap/*
 // @include  *://itsm.services.sap/*
 // @exclude  *://itsm.services.sap/attach_knowledge*
+// @exclude  *://itsm.services.sap/*record/incident*
 // ==/UserScript==
 
 /*
@@ -287,14 +288,32 @@ document.addEventListener("mousedown",(e)=>{
   }
 });
 
+navigation.addEventListener("navigate", e => {
+  if(e.destination.url.toString().indexOf("/record/incident")>=0){
+    camButton.setAttribute("style","cursor:pointer; z-index:99; display:block; position:absolute; right:162px; top:196px; vertical-align:middle; padding:5.5px 12px; background-color:RGB(var(--now-button--secondary--background-color--hover,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha--hover,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); border-width:var(--now-button--secondary--border-width,var(--now-button--border-width,var(--now-actionable--border-width,1px))); color:RGB(var(--now-button--secondary--color,var(--now-color--neutral-18,22,27,28))); font-family: var(--now-button--font-family,var(--now-actionable--font-family,var(--now-font-family,\"Source Sans Pro\",Arial,sans-serif))); font-style:var(--now-button--font-style,var(--now-actionable--font-style,normal)); font-weight:var(--now-button--font-weight,var(--now-actionable--font-weight,normal)); font-size:1rem; line-weight:1.25;");
+    document.body.appendChild(camButton);
+  }else if(caseData.types[0] == "nocase"){
+    document.body.removeChild(document.getElementById("camButton"));
+  }else{
+    document.body.appendChild(camButton);
+  }
+});
+
 //Setting content when case is opened
 ise.case.onUpdate2(
     async (receivedCaseData) => {
       if(receivedCaseData.types[0] == "nocase"){
         document.body.removeChild(document.getElementById("camButton"));
+        caseData.types[0] = "nocase";
+        camButton.setAttribute("style","cursor:pointer; z-index:99; display:block; position:absolute; right:162px; top:155px; vertical-align:middle; padding:5.5px 12px; background-color:RGB(var(--now-button--secondary--background-color--hover,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha--hover,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); border-width:var(--now-button--secondary--border-width,var(--now-button--border-width,var(--now-actionable--border-width,1px))); color:RGB(var(--now-button--secondary--color,var(--now-color--neutral-18,22,27,28))); font-family: var(--now-button--font-family,var(--now-actionable--font-family,var(--now-font-family,\"Source Sans Pro\",Arial,sans-serif))); font-style:var(--now-button--font-style,var(--now-actionable--font-style,normal)); font-weight:var(--now-button--font-weight,var(--now-actionable--font-weight,normal)); font-size:1rem; line-weight:1.25;");
       }else if (receivedCaseData.types[0] == "headers"){
         caseData = receivedCaseData;
-        document.body.appendChild(camButton);
+        if(window.location.href.toString().indexOf("/record/incident") >= 0){
+          camButton.setAttribute("style","cursor:pointer; z-index:99; display:block; position:absolute; right:162px; top:196px; vertical-align:middle; padding:5.5px 12px; background-color:RGB(var(--now-button--secondary--background-color--hover,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha--hover,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); border-width:var(--now-button--secondary--border-width,var(--now-button--border-width,var(--now-actionable--border-width,1px))); color:RGB(var(--now-button--secondary--color,var(--now-color--neutral-18,22,27,28))); font-family: var(--now-button--font-family,var(--now-actionable--font-family,var(--now-font-family,\"Source Sans Pro\",Arial,sans-serif))); font-style:var(--now-button--font-style,var(--now-actionable--font-style,normal)); font-weight:var(--now-button--font-weight,var(--now-actionable--font-weight,normal)); font-size:1rem; line-weight:1.25;");
+          document.body.appendChild(camButton);
+        }else{
+          document.body.appendChild(camButton);
+        }
       }      
   },
   //this seems to be what requests communication data from case
