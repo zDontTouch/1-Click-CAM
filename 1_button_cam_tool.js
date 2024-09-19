@@ -311,11 +311,13 @@ navigation.addEventListener("navigate", e => {
     document.body.appendChild(tenantTextBox);
   }else if(caseData.types[0] == "nocase"){
     document.body.removeChild(document.getElementById("camButton"));
+    document.getElementById("camText").value = "";
     document.body.removeChild(document.getElementById("camText"));
   }else if(e.destination.url.toString().indexOf("kb_template_kcs_article")>=0 || e.destination.url.toString().indexOf("sn_customerservice_action_plans")>=0){
     camButton.setAttribute("style","cursor:pointer; z-index:99; display:block; position:absolute; right:162px; top:196px; vertical-align:middle; padding:5.5px 12px; background-color:RGB(var(--now-button--secondary--background-color--hover,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha--hover,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); border-width:var(--now-button--secondary--border-width,var(--now-button--border-width,var(--now-actionable--border-width,1px))); color:RGB(var(--now-button--secondary--color,var(--now-color--neutral-18,22,27,28))); font-family: var(--now-button--font-family,var(--now-actionable--font-family,var(--now-font-family,\"Source Sans Pro\",Arial,sans-serif))); font-style:var(--now-button--font-style,var(--now-actionable--font-style,normal)); font-weight:var(--now-button--font-weight,var(--now-actionable--font-weight,normal)); font-size:1rem; line-weight:1.25;");
     tenantTextBox.setAttribute("style","z-index:99; display:block; position:absolute; width:210px; height:25px; right:292px; top:198px; background-color:RGB(var(--now-button--secondary--background-color--hover,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha--hover,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); font-family: var(--now-form-field--font-family, var(--now-font-family, \"Source Sans Pro\", Arial, sans-serif));");
     document.body.removeChild(document.getElementById("camButton"));
+    document.getElementById("camText").value = "";
     document.body.removeChild(document.getElementById("camText"));
   }else{
     document.body.appendChild(camButton);
@@ -328,6 +330,7 @@ ise.case.onUpdate2(
     async (receivedCaseData) => {
       if(receivedCaseData.types[0] == "nocase"){
         document.body.removeChild(document.getElementById("camButton"));
+        document.getElementById("camText").value = "";
         document.body.removeChild(document.getElementById("camText"));
         caseData.types[0] = "nocase";
         camButton.setAttribute("style","cursor:pointer; z-index:99; display:block; position:absolute; right:162px; top:155px; vertical-align:middle; padding:5.5px 12px; background-color:RGB(var(--now-button--secondary--background-color--hover,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha--hover,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); border-width:var(--now-button--secondary--border-width,var(--now-button--border-width,var(--now-actionable--border-width,1px))); color:RGB(var(--now-button--secondary--color,var(--now-color--neutral-18,22,27,28))); font-family: var(--now-button--font-family,var(--now-actionable--font-family,var(--now-font-family,\"Source Sans Pro\",Arial,sans-serif))); font-style:var(--now-button--font-style,var(--now-actionable--font-style,normal)); font-weight:var(--now-button--font-weight,var(--now-actionable--font-weight,normal)); font-size:1rem; line-weight:1.25;");
