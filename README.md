@@ -1,5 +1,8 @@
-The 1-Click-CAM is a script for the SAP Integrated Support Environment which aims to streamline the way users log into customer's systems for support. It is a GreaseMonkey-type script that creates and embeds a new button to ServiceNow cases.
-![image_alt](https://github.com/zDontTouch/1-Click-CAM/blob/f3675e313bba49b51347229048f22cba1d4717b2/1_Click_Cam_1.png)
+The 1-Click-CAM is a script for the SAP Integrated Support Environment which aims to streamline the way users log into customer's systems for support. It is a GreaseMonkey-type script that creates and embeds a new button to ServiceNow cases.</br>
+<p align="center">
+  <img src="https://github.com/zDontTouch/1-Click-CAM/blob/f3675e313bba49b51347229048f22cba1d4717b2/1_Click_Cam_1.png" />
+</p>
+
 
 Normally, the users need to:
 1. Click on the connection button.
